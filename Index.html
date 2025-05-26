@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario de Ruta Multipaso</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="container py-4">
+
+  <div class="card shadow p-4">
+    <h2 class="text-center mb-4">Formulario de Ruta</h2>
+
+    <!-- Barra de progreso -->
+    <div class="progress mb-4" style="height: 20px;">
+      <div id="progressBar" class="progress-bar" role="progressbar" style="width: 20%;">Paso 1 de 5</div>
+    </div>
+
+    <form id="formulario">
+
+      <!-- Paso 1: Datos generales -->
+      <div class="step active">
+        <div class="mb-3">
+          <label for="dia" class="form-label">Día:</label>
+          <input type="date" class="form-control" id="dia" value="2025-05-24" required />
+        </div>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" value="Erik Cando" required />
+        </div>
+        <div class="mb-3">
+          <label for="ruta" class="form-label">N° Ruta:</label>
+          <input type="text" class="form-control" id="ruta" value="223" required />
+        </div>
+        <div class="mb-3">
+          <label for="vehiculo" class="form-label">Vehículo:</label>
+          <input type="text" class="form-control" id="vehiculo" value="Isuzu" />
+        </div>
+        <div class="mb-3">
+          <label for="matricula" class="form-label">Matrícula:</label>
+          <input type="text" class="form-control" id="matricula" value="9536LWR" />
+        </div>
+      </div>
+
+      <!-- Paso 2: Kilometraje, horas y carga -->
+      <div class="step">
+        <div class="mb-3">
+          <label for="kmIniciales" class="form-label">Km Iniciales:</label>
+          <input type="number" class="form-control" id="kmIniciales" value="116482" required />
+        </div>
+        <div class="mb-3">
+          <label for="kmFinales" class="form-label">Km Finales:</label>
+          <input type="number" class="form-control" id="kmFinales" value="116606" required />
+        </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label class="form-label mb-0" style="margin-right: 20px;" for="devuelta">Repostaje diésel(Si/No)</label>
+        <div class="form-check form-switch m-0" >
+            <input type="checkbox" class="form-check-input" id="repostaje" />
+        </div>
+        </div>
+        <div class="mb-3">
+          <label for="surtidor" class="form-label">Surtidor fábrica:</label>
+          <input type="text" class="form-control" id="surtidor" />
+        </div>
+        <div class="mb-3">
+          <label for="estacion" class="form-label">Estación de servicio:</label>
+          <input type="text" class="form-control" id="estacion" />
+        </div>
+        <div class="mb-3">
+          <label for="horaEntrada" class="form-label">Hora entrada cargar:</label>
+          <input type="time" class="form-control" id="horaEntrada" value="05:50" />
+        </div>
+        <div class="mb-3">
+          <label for="horaSalida" class="form-label">Hora salida a ruta:</label>
+          <input type="time" class="form-control" id="horaSalida" value="07:00" />
+        </div>
+        <div class="mb-3">
+          <label for="horaRegreso" class="form-label">Hora regreso fábrica:</label>
+          <input type="time" class="form-control" id="horaRegreso" value="15:15" />
+        </div>
+        <div class="mb-3">
+          <label for="kilos" class="form-label">N° kilos carga:</label>
+          <input type="text" class="form-control" id="kilos" value="800kg" />
+        </div>
+        <div class="mb-3">
+          <label for="repartosIniciales" class="form-label">N° Repartos iniciales:</label>
+          <input type="number" class="form-control" id="repartosIniciales" value="35" />
+        </div>
+        <div class="mb-3">
+          <label for="repartosFinales" class="form-label">N° Repartos finales:</label>
+          <input type="number" class="form-control" id="repartosFinales" value="35" />
+        </div>
+        <div class="mb-3">
+          <label for="noEntregas" class="form-label">N° Repartos no entregas:</label>
+          <input type="number" class="form-control" id="noEntregas" />
+        </div>
+      </div>
+
+      <!-- Paso 3: Clientes y cobros -->
+      <div class="step">
+        <div class="mb-3">
+          <label class="form-label">N° Clientes:</label>
+          <input type="number" class="form-control" id="numClientes" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">N° Albaranes de CONTADO para cobrar (Menchu/M.Cruz):</label>
+          <input type="text" class="form-control" id="albaranesContado" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">N° de los NO cobrados:</label>
+          <input type="text" class="form-control" id="noCobrados" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Motivo Cliente 1:</label>
+          <input type="text" class="form-control" id="motivo1" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Motivo Cliente 2:</label>
+          <input type="text" class="form-control" id="motivo2" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Motivo Cliente 3:</label>
+          <input type="text" class="form-control" id="motivo3" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Incidencias de cobro con albaranes de contado (clientes):</label>
+          <textarea class="form-control" id="incidenciasCobro" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">N° Cobros realizados por TPV:</label>
+          <input type="number" class="form-control" id="tpv" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">N° Cobros realizados con talón:</label>
+          <input type="number" class="form-control" id="talon" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">€ Cobrados con talón:</label>
+          <input type="text" class="form-control" id="eurosTalon" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">€ Ingresados en banco:</label>
+          <input type="text" class="form-control" id="banco" value="480" />
+        </div>
+      </div>
+
+<!-- Paso 4: Almacén y repartos fuera de ruta -->
+    <div class="step">
+        <div class="mb-3 d-flex align-items-center">
+            <label class="form-label mb-0" style="margin-right: 20px;" for="devuelta">Mercancía devuelta al almacén (Si/No)</label>
+        <div class="form-check form-switch m-0" >
+            <input type="checkbox" class="form-check-input" id="devuelta" />
+        </div>
+    </div>
+   
+    <div class="mb-3">
+        <label class="form-label">Nombre del responsable de almacén que revisa la entrada:</label>
+        <input type="text" class="form-control" id="responsableAlmacen" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">N° Repartos FUERA DE RUTA:</label>
+        <input type="number" class="form-control" id="fueraRuta" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">N° Repartos FUERA DE RUTA sin cobro de suplemento o con importe 0€:</label>
+        <input type="number" class="form-control" id="fueraRutaSinCobro" />
+    </div>
+    </div>
+
+      <!-- Paso 5: Incidencias generales -->
+      <div class="step">
+        <div class="mb-3">
+          <label for="incidencias" class="form-label">Incidencias:</label>
+          <textarea class="form-control" id="incidencias" rows="5" placeholder="Describe cualquier incidencia aquí..."></textarea>
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      <div class="d-flex justify-content-between">
+        <button type="button" id="prevBtn" class="btn btn-secondary" onclick="nextPrev(-1)" disabled>Anterior</button>
+        <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextPrev(1)">Siguiente</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    let currentStep = 0; // paso actual
+    const steps = document.querySelectorAll(".step");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const progressBar = document.getElementById("progressBar");
+
+    function showStep(n) {
+      steps.forEach((step, i) => {
+        step.classList.toggle("active", i === n);
+      });
+
+      prevBtn.disabled = n === 0;
+      if (n === steps.length - 1) {
+        nextBtn.textContent = "Enviar y Compartir";
+      } else {
+        nextBtn.textContent = "Siguiente";
+      }
+
+      progressBar.style.width = ((n + 1) / steps.length) * 100 + "%";
+      progressBar.textContent = `Paso ${n + 1} de ${steps.length}`;
+    }
+
+    function nextPrev(n) {
+      // Validar campos requeridos si avanzamos
+      if (n === 1) {
+        const inputs = steps[currentStep].querySelectorAll("input[required], textarea[required]");
+        for (const input of inputs) {
+          if (!input.value.trim()) {
+            alert("Por favor, rellena los campos requeridos.");
+            input.focus();
+            return;
+          }
+        }
+      }
+
+      currentStep += n;
+
+      if (currentStep >= steps.length) {
+        enviarWhatsApp();
+        return;
+      }
+
+      showStep(currentStep);
+    }
+
+    function enviarWhatsApp() {
+      const telefono = "1234567890"; // Pon aquí el número destino con código país sin +
+      const mensaje = 
+`DÍA: ${document.getElementById("dia").value}
+NOMBRE: ${document.getElementById("nombre").value}
+N° RUTA: ${document.getElementById("ruta").value}
+Vehículo: ${document.getElementById("vehiculo").value}
+Matrícula: ${document.getElementById("matricula").value}
+Km Iniciales: ${document.getElementById("kmIniciales").value}
+Km Finales: ${document.getElementById("kmFinales").value}
+Repostaje diésel: ${document.getElementById("repostaje").checked ? "Sí" : "No"}
+Surtidor fábrica: ${document.getElementById("surtidor").value}
+Estación de servicio: ${document.getElementById("estacion").value}
+Hora entrada cargar: ${document.getElementById("horaEntrada").value}
+Hora salida a ruta: ${document.getElementById("horaSalida").value}
+Hora regreso fábrica: ${document.getElementById("horaRegreso").value}
+N° kilos carga: ${document.getElementById("kilos").value}
+N° Repartos iniciales: ${document.getElementById("repartosIniciales").value}
+N° Repartos finales: ${document.getElementById("repartosFinales").value}
+N° Repartos no entregas: ${document.getElementById("noEntregas").value}
+N° Clientes: ${document.getElementById("numClientes").value}
+N° Albaranes contado: ${document.getElementById("albaranesContado").value}
+N° No cobrados: ${document.getElementById("noCobrados").value}
+Motivo Cliente 1: ${document.getElementById("motivo1").value}
+Motivo Cliente 2: ${document.getElementById("motivo2").value}
+Motivo Cliente 3: ${document.getElementById("motivo3").value}
+Incidencias cobro contado: ${document.getElementById("incidenciasCobro").value}
+N° Cobros TPV: ${document.getElementById("tpv").value}
+N° Cobros talón: ${document.getElementById("talon").value}
+€ Cobrados talón: ${document.getElementById("eurosTalon").value}
+€ Ingresados banco: ${document.getElementById("banco").value}
+Mercancía devuelta al almacén: ${document.getElementById("devuelta").checked ? "Sí" : "No"}
+Responsable almacén: ${document.getElementById("responsableAlmacen").value}
+N° Repartos fuera de ruta: ${document.getElementById("fueraRuta").value}
+N° Repartos fuera ruta sin cobro: ${document.getElementById("fueraRutaSinCobro").value}
+Incidencias generales: ${document.getElementById("incidencias").value}`;
+
+      // Copiar texto al portapapeles
+      navigator.clipboard.writeText(mensaje).then(() => {
+        alert("Mensaje copiado al portapapeles. Ahora puedes compartirlo en WhatsApp.");
+
+        // Abrir WhatsApp app (web o app móvil)
+        const urlWhatsapp = `whatsapp://send?text=${encodeURIComponent(mensaje)}`;
+        window.location.href = urlWhatsapp;
+      }).catch(() => {
+        alert("No se pudo copiar el mensaje automáticamente. Copia el texto manualmente.");
+      });
+    }
+
+    // Inicializar mostrando el primer paso
+    showStep(currentStep);
+  </script>
+</body>
+</html>
