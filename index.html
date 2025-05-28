@@ -29,24 +29,24 @@
       <!-- Paso 1: Datos generales -->
       <div class="step active">
         <div class="mb-3">
-          <label for="dia" class="form-label">Día:</label>
-          <input type="date" class="form-control" id="dia" value="2025-05-24" required />
+          <label id="infoDia" for="dia" class="form-label">Día:</label>
+          <input type="date" class="form-control" id="dia" required />
         </div>
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre:</label>
-          <input type="text" class="form-control" id="nombre" value="Erik Cando" required />
+          <input type="text" class="form-control" id="nombre"  required />
         </div>
         <div class="mb-3">
           <label for="ruta" class="form-label">N° Ruta:</label>
-          <input type="text" class="form-control" id="ruta" value="223" required />
+          <input type="text" class="form-control" id="ruta"   />
         </div>
         <div class="mb-3">
           <label for="vehiculo" class="form-label">Vehículo:</label>
-          <input type="text" class="form-control" id="vehiculo" value="Isuzu" />
+          <input type="text" class="form-control" id="vehiculo" />
         </div>
         <div class="mb-3">
           <label for="matricula" class="form-label">Matrícula:</label>
-          <input type="text" class="form-control" id="matricula" value="9536LWR" />
+          <input type="text" class="form-control" id="matricula" />
         </div>
       </div>
 
@@ -54,16 +54,17 @@
       <div class="step">
         <div class="mb-3">
           <label for="kmIniciales" class="form-label">Km Iniciales:</label>
-          <input type="number" class="form-control" id="kmIniciales" value="116482" required />
+          <input type="number" class="form-control" id="kmIniciales"   />
         </div>
         <div class="mb-3">
           <label for="kmFinales" class="form-label">Km Finales:</label>
-          <input type="number" class="form-control" id="kmFinales" value="116606" required />
+          <input type="number" class="form-control" id="kmFinales"   />
         </div>
         <div class="mb-3 d-flex align-items-center">
             <label class="form-label mb-0" style="margin-right: 20px;" for="devuelta">Repostaje diésel(Si/No)</label>
         <div class="form-check form-switch m-0" >
             <input type="checkbox" class="form-check-input" id="repostaje" />
+            <span id="labelRepostaje" style="margin-left: 10px;">No</span>
         </div>
         </div>
         <div class="mb-3">
@@ -76,34 +77,36 @@
         </div>
         <div class="mb-3">
           <label for="horaEntrada" class="form-label">Hora entrada cargar:</label>
-          <input type="time" class="form-control" id="horaEntrada" value="05:50" />
+          <input type="time" class="form-control" id="horaEntrada" placeholder="05:50" />
         </div>
         <div class="mb-3">
           <label for="horaSalida" class="form-label">Hora salida a ruta:</label>
-          <input type="time" class="form-control" id="horaSalida" value="07:00" />
+          <input type="time" class="form-control" id="horaSalida" placeholder="07:00" />
         </div>
         <div class="mb-3">
           <label for="horaRegreso" class="form-label">Hora regreso fábrica:</label>
-          <input type="time" class="form-control" id="horaRegreso" value="15:15" />
+          <input type="time" class="form-control" id="horaRegreso" placeholder="15:15" />
         </div>
+        </div>
+        <div class="step">
         <div class="mb-3">
           <label for="kilos" class="form-label">N° kilos carga:</label>
-          <input type="text" class="form-control" id="kilos" value="800kg" />
+          <input type="text" class="form-control" id="kilos" placeholder="kg" />
         </div>
         <div class="mb-3">
           <label for="repartosIniciales" class="form-label">N° Repartos iniciales:</label>
-          <input type="number" class="form-control" id="repartosIniciales" value="35" />
+          <input type="number" class="form-control" id="repartosIniciales" placeholder="" />
         </div>
         <div class="mb-3">
           <label for="repartosFinales" class="form-label">N° Repartos finales:</label>
-          <input type="number" class="form-control" id="repartosFinales" value="35" />
+          <input type="number" class="form-control" id="repartosFinales" placeholder="" />
         </div>
         <div class="mb-3">
-          <label for="noEntregas" class="form-label">N° Repartos no entregas:</label>
+          <label for="noEntregas" class="form-label">N° Repartos no entregados:</label>
           <input type="number" class="form-control" id="noEntregas" />
         </div>
       </div>
-
+      </div>
       <!-- Paso 3: Clientes y cobros -->
       <div class="step">
         <div class="mb-3">
@@ -144,11 +147,11 @@
         </div>
         <div class="mb-3">
           <label class="form-label">€ Cobrados con talón:</label>
-          <input type="text" class="form-control" id="eurosTalon" />
+          <input type="text" class="form-control" id="eurosTalon" placeholder="€" />
         </div>
         <div class="mb-3">
           <label class="form-label">€ Ingresados en banco:</label>
-          <input type="text" class="form-control" id="banco" value="480" />
+          <input type="text" class="form-control" id="banco" value="€" />
         </div>
       </div>
 
@@ -158,6 +161,7 @@
             <label class="form-label mb-0" style="margin-right: 20px;" for="devuelta">Mercancía devuelta al almacén (Si/No)</label>
         <div class="form-check form-switch m-0" >
             <input type="checkbox" class="form-check-input" id="devuelta" />
+            <span id="labelDevuelta" style="margin-left: 10px;">No</span>
         </div>
     </div>
    
@@ -193,12 +197,32 @@
   </div>
 
   <script>
+    //Carga del documento
+     document.addEventListener('DOMContentLoaded', function() {
+      const dia = fechaActual();
+      const nombreGuardado = localStorage.getItem("nombreUsuario");
+      
+      document.getElementById("dia").value = dia;
+  
+
+      if (nombreGuardado) {
+        document.getElementById("nombre").value = nombreGuardado;
+      }
+
+
+    });
+
+    //Se define los btn y stepss
     let currentStep = 0; // paso actual
     const steps = document.querySelectorAll(".step");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const progressBar = document.getElementById("progressBar");
-
+    
+     // Inicializar para cada checkbox
+    switchSino('devuelta', 'labelDevuelta');
+    switchSino('repostaje', 'labelRepostaje');
+    
     function showStep(n) {
       steps.forEach((step, i) => {
         step.classList.toggle("active", i === n);
@@ -232,10 +256,38 @@
 
       if (currentStep >= steps.length) {
         enviarWhatsApp();
+        guardarNombre();
         return;
       }
 
       showStep(currentStep);
+    }
+    function fechaActual(){
+      const hoy= new Date();
+      const yyyy = hoy.getFullYear();
+      const mm =String (hoy.getMonth()+1).padStart(2,'0');
+      const dd = String (hoy.getDate()).padStart(2,'0');
+      const formatoFecha =`${yyyy}-${mm}-${dd}`;
+
+      return formatoFecha;
+    }
+
+    function guardarNombre(){
+      const nombre = document.getElementById("nombre").value.trim();
+      if(nombre!=null){
+        localStorage.setItem("nombreUsuario", nombre);
+
+      }
+    }
+    function switchSino (checkboxId, labelId) {
+      const checkbox = document.getElementById(checkboxId);
+      const label = document.getElementById(labelId);
+
+      label.textContent = checkbox.checked ? 'Si':'No';
+      checkbox.addEventListener('change',()=>{
+        label.textContent = checkbox.checked ? 'Si':'No';
+
+      });
     }
 
     function enviarWhatsApp() {
